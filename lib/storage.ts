@@ -6,15 +6,16 @@ interface PasteData {
   views: number;
 }
 
-// Global storage that persists across requests
-declare global {
-  var pasteStorage: Map<string, PasteData> | undefined;
-}
+// Simple in-memory storage
+const mockStorage = new Map<string, PasteData>();
 
-// Initialize global storage
-if (!global.pasteStorage) {
-  global.pasteStorage = new Map<string, PasteData>();
-}
+// Add a demo paste for testing
+mockStorage.set('demo', {
+  content: 'Hello World!\n\nThis is a demo paste to show the application working.\n\nFeatures:\n- Create pastes with text content\n- Optional TTL (time to live)\n- Optional view limits\n- Modern responsive UI\n- Shareable URLs',
+  created_at: Date.now(),
+  expires_at: null,
+  max_views: null,
+  views: 0
+});
 
-export const mockStorage = global.pasteStorage;
-export { type PasteData };
+export { mockStorage, type PasteData };
