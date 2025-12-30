@@ -36,7 +36,7 @@ export default function NotFound() {
             fontSize: '16px', 
             opacity: '0.9'
           }}>
-            This paste doesn't exist, has expired, or has reached its view limit
+            This paste doesn&apos;t exist, has expired, or has reached its view limit
           </p>
         </div>
 
@@ -60,7 +60,7 @@ export default function NotFound() {
             }}>
               <li>⏰ The paste has expired (TTL reached)</li>
               <li>👁️ The paste has reached its maximum view count</li>
-              <li>🔗 The paste ID is incorrect or doesn't exist</li>
+              <li>🔗 The paste ID is incorrect or doesn&apos;t exist</li>
               <li>🗑️ The paste was deleted</li>
             </ul>
           </div>
