@@ -70,25 +70,6 @@ export default function Home() {
     }
   };
 
-  const inputStyle = {
-    width: '100%',
-    padding: '12px',
-    border: '2px solid #e1e5e9',
-    borderRadius: '8px',
-    fontSize: '14px',
-    transition: 'border-color 0.2s ease',
-    fontFamily: 'inherit',
-    outline: 'none',
-  };
-
-  const labelStyle = {
-    display: 'block',
-    marginBottom: '8px',
-    fontWeight: '600',
-    color: '#374151',
-    fontSize: '14px',
-  };
-
   return (
     <div style={{ 
       minHeight: '100vh', 
@@ -103,7 +84,6 @@ export default function Home() {
         boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
         overflow: 'hidden'
       }}>
-        {/* Header */}
         <div style={{
           background: 'linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%)',
           padding: '32px',
@@ -113,83 +93,81 @@ export default function Home() {
           <h1 style={{ 
             margin: '0 0 8px 0', 
             fontSize: '32px', 
-            fontWeight: '700',
-            letterSpacing: '-0.025em'
+            fontWeight: '700'
           }}>
             📋 Pastebin Lite
           </h1>
           <p style={{ 
             margin: '0', 
             fontSize: '16px', 
-            opacity: '0.9',
-            fontWeight: '400'
+            opacity: '0.9'
           }}>
             Share text snippets with optional expiry and view limits
           </p>
         </div>
 
-        {/* Form */}
         <div style={{ padding: '32px' }}>
           <form onSubmit={handleSubmit}>
             <div style={{ marginBottom: '24px' }}>
-              <label htmlFor="content" style={labelStyle}>
+              <label style={{ display: 'block', marginBottom: '8px', fontWeight: '600' }}>
                 📝 Content *
               </label>
               <textarea
-                id="content"
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
                 required
                 rows={12}
                 style={{
-                  ...inputStyle,
-                  fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace',
-                  resize: 'vertical',
-                  minHeight: '200px'
+                  width: '100%',
+                  padding: '12px',
+                  border: '2px solid #e1e5e9',
+                  borderRadius: '8px',
+                  fontSize: '14px',
+                  fontFamily: 'monospace',
+                  resize: 'vertical'
                 }}
-                placeholder="Paste your text here...\n\nSupports plain text, code, logs, or any text content."
-                onFocus={(e) => e.target.style.borderColor = '#4f46e5'}
-                onBlur={(e) => e.target.style.borderColor = '#e1e5e9'}
+                placeholder="Paste your text here..."
               />
             </div>
 
-            <div style={{ 
-              display: 'grid', 
-              gridTemplateColumns: '1fr 1fr', 
-              gap: '16px', 
-              marginBottom: '24px' 
-            }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '24px' }}>
               <div>
-                <label htmlFor="ttl" style={labelStyle}>
+                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '600' }}>
                   ⏰ Expire after (seconds)
                 </label>
                 <input
-                  id="ttl"
                   type="number"
                   value={ttlSeconds}
                   onChange={(e) => setTtlSeconds(e.target.value)}
                   min="1"
-                  style={inputStyle}
-                  placeholder="e.g., 3600 (1 hour)"
-                  onFocus={(e) => e.target.style.borderColor = '#4f46e5'}
-                  onBlur={(e) => e.target.style.borderColor = '#e1e5e9'}
+                  style={{
+                    width: '100%',
+                    padding: '12px',
+                    border: '2px solid #e1e5e9',
+                    borderRadius: '8px',
+                    fontSize: '14px'
+                  }}
+                  placeholder="e.g., 3600"
                 />
               </div>
 
               <div>
-                <label htmlFor="maxViews" style={labelStyle}>
+                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '600' }}>
                   👁️ Max views
                 </label>
                 <input
-                  id="maxViews"
                   type="number"
                   value={maxViews}
                   onChange={(e) => setMaxViews(e.target.value)}
                   min="1"
-                  style={inputStyle}
+                  style={{
+                    width: '100%',
+                    padding: '12px',
+                    border: '2px solid #e1e5e9',
+                    borderRadius: '8px',
+                    fontSize: '14px'
+                  }}
                   placeholder="e.g., 10"
-                  onFocus={(e) => e.target.style.borderColor = '#4f46e5'}
-                  onBlur={(e) => e.target.style.borderColor = '#e1e5e9'}
                 />
               </div>
             </div>
@@ -200,16 +178,13 @@ export default function Home() {
               style={{
                 width: '100%',
                 padding: '16px 24px',
-                background: loading || !content.trim() 
-                  ? '#9ca3af' 
-                  : 'linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%)',
+                background: loading || !content.trim() ? '#9ca3af' : 'linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%)',
                 color: 'white',
                 border: 'none',
                 borderRadius: '8px',
                 fontSize: '16px',
                 fontWeight: '600',
-                cursor: loading || !content.trim() ? 'not-allowed' : 'pointer',
-                transition: 'all 0.2s ease'
+                cursor: loading || !content.trim() ? 'not-allowed' : 'pointer'
               }}
             >
               {loading ? '🔄 Creating...' : '🚀 Create Paste'}
@@ -223,8 +198,7 @@ export default function Home() {
               backgroundColor: '#fef2f2', 
               color: '#dc2626',
               borderRadius: '8px',
-              border: '1px solid #fecaca',
-              fontSize: '14px'
+              border: '1px solid #fecaca'
             }}>
               ❌ {error}
             </div>
@@ -238,17 +212,12 @@ export default function Home() {
               borderRadius: '12px',
               border: '1px solid #bbf7d0'
             }}>
-              <h3 style={{ 
-                margin: '0 0 16px 0', 
-                color: '#166534',
-                fontSize: '18px',
-                fontWeight: '600'
-              }}>
+              <h3 style={{ margin: '0 0 16px 0', color: '#166534', fontSize: '18px', fontWeight: '600' }}>
                 ✅ Paste created successfully!
               </h3>
               
               <div style={{ marginBottom: '12px' }}>
-                <p style={{ margin: '0 0 4px 0', fontSize: '14px', color: '#374151', fontWeight: '600' }}>
+                <p style={{ margin: '0 0 4px 0', fontSize: '14px', fontWeight: '600' }}>
                   📋 Paste ID:
                 </p>
                 <code style={{ 
@@ -263,7 +232,7 @@ export default function Home() {
               </div>
               
               <div>
-                <p style={{ margin: '0 0 8px 0', fontSize: '14px', color: '#374151', fontWeight: '600' }}>
+                <p style={{ margin: '0 0 8px 0', fontSize: '14px', fontWeight: '600' }}>
                   🔗 Shareable URL:
                 </p>
                 <div style={{ 
@@ -298,35 +267,7 @@ export default function Home() {
                       border: 'none',
                       borderRadius: '6px',
                       fontSize: '12px',
-                      cursor: 'pointer',
-                      transition: 'background-color 0.2s ease',
-                      whiteSpace: 'nowrap'
-                    }}
-                  >
-                    {copied ? '✓ Copied!' : '📋 Copy'}
-                  </button>
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
-    </div>
-  );
-}                   {result.url}
-                  </a>
-                  <button
-                    onClick={() => copyToClipboard(result.url)}
-                    style={{
-                      padding: '6px 12px',
-                      backgroundColor: copied ? '#10b981' : '#4f46e5',
-                      color: 'white',
-                      border: 'none',
-                      borderRadius: '6px',
-                      fontSize: '12px',
-                      cursor: 'pointer',
-                      transition: 'background-color 0.2s ease',
-                      whiteSpace: 'nowrap'
+                      cursor: 'pointer'
                     }}
                   >
                     {copied ? '✓ Copied!' : '📋 Copy'}
