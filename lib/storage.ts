@@ -6,7 +6,15 @@ interface PasteData {
   views: number;
 }
 
-// Shared mock storage for development
-const mockStorage = new Map<string, PasteData>();
+// Global storage that persists across requests
+declare global {
+  var pasteStorage: Map<string, PasteData> | undefined;
+}
 
-export { mockStorage, type PasteData };
+// Initialize global storage
+if (!global.pasteStorage) {
+  global.pasteStorage = new Map<string, PasteData>();
+}
+
+export const mockStorage = global.pasteStorage;
+export { type PasteData };
