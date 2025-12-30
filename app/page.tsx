@@ -313,4 +313,30 @@ export default function Home() {
       </div>
     </div>
   );
+}                   {result.url}
+                  </a>
+                  <button
+                    onClick={() => copyToClipboard(result.url)}
+                    style={{
+                      padding: '6px 12px',
+                      backgroundColor: copied ? '#10b981' : '#4f46e5',
+                      color: 'white',
+                      border: 'none',
+                      borderRadius: '6px',
+                      fontSize: '12px',
+                      cursor: 'pointer',
+                      transition: 'background-color 0.2s ease',
+                      whiteSpace: 'nowrap'
+                    }}
+                  >
+                    {copied ? '✓ Copied!' : '📋 Copy'}
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
 }
