@@ -1,5 +1,15 @@
 import { notFound } from 'next/navigation';
-import { mockStorage, type PasteData } from '../../../lib/storage';
+
+interface PasteData {
+  content: string;
+  created_at: number;
+  expires_at: number | null;
+  max_views: number | null;
+  views: number;
+}
+
+// Mock KV storage for development
+const mockStorage = new Map<string, PasteData>();
 
 function getCurrentTime(): number {
   return Date.now();
